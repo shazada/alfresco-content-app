@@ -62,6 +62,15 @@ export class NodesApi extends RepoApi {
         return Promise.all(deletions);
     }
 
+    deleteNodesById(ids: string[], permanent: boolean = true): Promise<any[]> {
+        const batch = ids.map((id: string): any => {
+                return this.deleteNodeById(id, permanent);
+            });
+
+        return Promise.resolve(batch);
+        // return Promise.all(deletions);
+    }
+
     // children
     getNodeChildren(nodeId: string): Promise<any> {
         return this

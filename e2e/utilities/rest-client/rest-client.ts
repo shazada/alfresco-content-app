@@ -70,6 +70,8 @@ export class RestClient {
                     request: { method, path, data: args.data }
                 };
 
+                console.log(path);
+
                 (response.statusCode >= 400)
                     ? reject(response)
                     : resolve(response);

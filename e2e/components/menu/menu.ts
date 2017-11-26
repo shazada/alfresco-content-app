@@ -47,7 +47,7 @@ export class Menu extends Component {
         return this.getItemByLabel(label).getAttribute('title');
     }
 
-    clicktNthItem(nth: number): promise.Promise<void> {
+    clickNthItem(nth: number): promise.Promise<void> {
         return this.getNthItem(nth).click();
     }
 

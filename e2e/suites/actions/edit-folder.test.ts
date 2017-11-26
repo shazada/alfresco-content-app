@@ -17,7 +17,7 @@
 
 import { protractor, element, browser, by, ElementFinder, promise } from 'protractor';
 import { LoginPage, LogoutPage, BrowsingPage } from '../../pages/pages';
-import { APP_ROUTES, SITE_VISIBILITY, SITE_ROLES } from '../../configs';
+import { APP_ROUTES, SITE_VISIBILITY, SITE_ROLES, SIDEBAR_LABELS } from '../../configs';
 import { RepoClient } from '../../utilities/repo-client/repo-client';
 import { CreateOrEditFolderDialog } from '../../components/dialog/create-edit-folder-dialog';
 import { Utils } from '../../utilities/utils';
@@ -44,42 +44,37 @@ describe('Edit folder', () => {
 
     const loginPage = new LoginPage();
     const logoutPage = new LogoutPage();
-    const personalFilesPage = new BrowsingPage(APP_ROUTES.PERSONAL_FILES);
+    const personalFilesPage = new BrowsingPage();
     const editDialog = new CreateOrEditFolderDialog();
     const dataTable = personalFilesPage.dataTable;
     const editButton = personalFilesPage.toolbar.actions.getButtonByTitleAttribute('Edit');
 
     beforeAll(done => {
-        Promise
-            .all([
-                apis.admin.people.createUser(username),
-                apis.admin.sites.createSite(siteName, SITE_VISIBILITY.PRIVATE)
-                    .then(() => apis.admin.nodes.createFolders([ folderName ], `Sites/${siteName}/documentLibrary`))
-            ])
+        apis.admin.people.createUser(username)
+            .then(() => apis.admin.sites.createSite(siteName, SITE_VISIBILITY.PRIVATE))
+            .then(() => apis.admin.nodes.createFolders([ folderName ], `Sites/${siteName}/documentLibrary`))
             .then(() => apis.admin.sites.addSiteMember(siteName, username, SITE_ROLES.SITE_CONSUMER))
-            .then(() => Promise.all([
-                apis.user.nodes.createNodeWithProperties( folderName, '', folderDescription, parent ),
-                apis.user.nodes.createFolders([ folderNameToEdit, duplicateFolderName ], parent)
-            ]))
-            .then(() => loginPage.load()
-                .then(() => loginPage.loginWith(username))
-                .then(done));
+            .then(() => apis.user.nodes.createNodeWithProperties( folderName, 'folder title', folderDescription, parent ))
+            .then(() => apis.user.nodes.createFolders([ folderNameToEdit, duplicateFolderName ], parent))
+            .then(() => loginPage.load())
+            .then(() => loginPage.loginWith(username))
+            .then(done);
     });
 
     beforeEach(done => {
-        personalFilesPage.load()
+        personalFilesPage.sidenav.navigateToLinkByLabel(SIDEBAR_LABELS.PERSONAL_FILES)
             .then(() => dataTable.waitForHeader())
             .then(done);
     });
 
     afterEach(done => {
-        browser.$('body').sendKeys(protractor.Key.ESCAPE).then(done);
+        browser.actions().sendKeys(protractor.Key.ESCAPE).perform().then(done);
     });
 
     afterAll(done => {
         Promise
             .all([
-                apis.admin.sites.deleteSite(siteName, true),
+                apis.admin.sites.deleteSite(siteName),
                 apis.user.nodes.deleteNodes([ parent ]),
                 logoutPage.load()
             ])
@@ -92,10 +87,10 @@ describe('Edit folder', () => {
                 .then(() => editButton.click())
                 .then(() => {
                     expect(editDialog.getTitle()).toBe('Edit folder');
-                    expect(editDialog.nameInput.getWebElement().getAttribute('value')).toBe(folderName);
-                    expect(editDialog.descriptionTextArea.getWebElement().getAttribute('value')).toBe(folderDescription);
-                    expect(editDialog.updateButton.getWebElement().isEnabled()).toBe(true, 'upload button is not enabled');
-                    expect(editDialog.cancelButton.getWebElement().isEnabled()).toBe(true, 'cancel button is not enabled');
+                    expect(editDialog.nameInput.getAttribute('value')).toBe(folderName);
+                    expect(editDialog.descriptionTextArea.getAttribute('value')).toBe(folderDescription);
+                    expect(editDialog.updateButton.isEnabled()).toBe(true, 'upload button is not enabled');
+                    expect(editDialog.cancelButton.isEnabled()).toBe(true, 'cancel button is not enabled');
                 })
             );
     });
@@ -113,8 +108,8 @@ describe('Edit folder', () => {
                 .then(() => editDialog.waitForDialogToClose())
                 .then(() => dataTable.waitForHeader())
                 .then(() => {
-                    const isPresent = dataTable.getRowByContainingText(folderNameEdited).isPresent();
-                    expect(isPresent).toBe(true, 'Folder not displayed in list view');
+                    const row = dataTable.getRowByContainingText(folderNameEdited);
+                    expect(row.isPresent()).toBe(true, 'Folder not displayed in list view');
                 })
                 .then(() => {
                     apis.user.nodes.getNodeDescription(folderNameEdited)
@@ -133,7 +128,7 @@ describe('Edit folder', () => {
                     editDialog.deleteNameWithBackspace();
                 })
                 .then(() => {
-                    expect(editDialog.updateButton.getWebElement().isEnabled()).toBe(false, 'upload button is not enabled');
+                    expect(editDialog.updateButton.isEnabled()).toBe(false, 'upload button is not enabled');
                     expect(editDialog.getValidationMessage()).toMatch('Folder name is required');
                 })
             );
@@ -149,7 +144,7 @@ describe('Edit folder', () => {
                     namesWithSpecialChars.forEach(name => {
                         editDialog.enterName(name);
 
-                        expect(editDialog.updateButton.getWebElement().isEnabled()).toBe(false, 'upload button is not disabled');
+                        expect(editDialog.updateButton.isEnabled()).toBe(false, 'upload button is not disabled');
                         expect(editDialog.getValidationMessage()).toContain(`Folder name can't contain these characters`);
                     });
                 })
@@ -162,7 +157,7 @@ describe('Edit folder', () => {
                 .then(() => editButton.click())
                 .then(() => editDialog.nameInput.sendKeys('.'))
                 .then(() => {
-                    expect(editDialog.updateButton.getWebElement().isEnabled()).toBe(false, 'upload button is not enabled');
+                    expect(editDialog.updateButton.isEnabled()).toBe(false, 'upload button is not enabled');
                     expect(editDialog.getValidationMessage()).toMatch(`Folder name can't end with a period .`);
                 })
             );

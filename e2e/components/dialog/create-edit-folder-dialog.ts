@@ -42,7 +42,7 @@ export class CreateOrEditFolderDialog extends Component {
         super(CreateOrEditFolderDialog.selectors.root, ancestor);
     }
 
-    waitForDialogToOpen() {
+    waitForDialogToOpen(): promise.Promise<CreateOrEditFolderDialog> {
         return browser.wait(EC.presenceOf(this.title), BROWSER_WAIT_TIMEOUT);
     }
 

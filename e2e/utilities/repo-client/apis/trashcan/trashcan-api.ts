@@ -23,4 +23,25 @@ export class TrashcanApi extends RepoApi {
             .delete(`/deleted-nodes/${id}`)
             .catch(this.handleError);
     }
+
+    getDeletedNodes(): Promise<any> {
+        return this
+            .get(`/deleted-nodes`)
+            .catch(this.handleError);
+    }
+
+    emptyTrash(): Promise<any> {
+        return this.getDeletedNodes()
+            .then(resp => {
+                return resp.data.list.entries.map(entries => this.permanentlyDelete(entries.entry.id));
+            })
+            .catch(this.handleError);
+
+        // const promises = names
+        //     .map((name: string): any => {
+        //         return this.deleteNodeByPath(`${relativePath}/${name}`, permanent);
+        //     });
+
+        // return Promise.all(deletions);
+    }
 }

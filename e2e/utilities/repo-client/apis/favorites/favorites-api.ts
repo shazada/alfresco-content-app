@@ -61,6 +61,21 @@ export class FavoritesApi extends RepoApi {
             .catch((response) => Promise.resolve(response));
     }
 
+    getFavoriteById(id: string): Promise<any> {
+        return this.get(`/people/-me-/favorites/${id}`)
+            .catch((response) => Promise.resolve(response));
+    }
+
+    isFavorite(id: string): Promise<boolean> {
+        return this.getFavoriteById(id)
+            .then(resp =>
+                resp.data.statusCode === 200
+                ? Promise.resolve(true)
+                : resp.data.statusCode === 404 ? Promise.resolve(false) : Promise.resolve(resp)
+            )
+            .catch(response => Promise.resolve(response));
+    }
+
     removeFavorite(api: RepoClient, nodeType: string, name: string): Promise<any> {
         return api.nodes.getNodeByPath(name)
             .then((response) => {

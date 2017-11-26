@@ -20,7 +20,7 @@ exports.config = {
     ],
 
     capabilities: {
-        'browserName': 'chrome',
+        browserName: 'chrome',
         chromeOptions: {
             prefs: {
                 'credentials_enable_service': false
