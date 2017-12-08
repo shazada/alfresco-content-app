@@ -32,7 +32,7 @@ export class Menu extends Component {
     }
 
     wait() {
-        return browser.wait(EC.visibilityOf(this.items.get(0)), BROWSER_WAIT_TIMEOUT);
+        return browser.wait(EC.elementToBeClickable(this.items.get(0)), BROWSER_WAIT_TIMEOUT);
     }
 
     getNthItem(nth: number): ElementFinder {
