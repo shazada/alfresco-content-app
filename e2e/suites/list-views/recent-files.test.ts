@@ -121,6 +121,7 @@ describe('Recent Files', () => {
 
     it('Location column redirect - file in user Home', () => {
         dataTable.clickItemLocation(fileName1)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe(folderName);
@@ -133,6 +134,7 @@ describe('Recent Files', () => {
 
     it('Location column redirect - file in folder', () => {
         dataTable.clickItemLocation(fileName2)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe('Personal Files');

@@ -123,6 +123,7 @@ describe('Shared Files', () => {
 
     it('Location column redirect - file in user Home', () => {
         dataTable.clickItemLocation(fileUser)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe(folderUser);
@@ -135,6 +136,7 @@ describe('Shared Files', () => {
 
     it('Location column redirect - file in site', () => {
         dataTable.clickItemLocation(fileAdmin)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe(siteName);

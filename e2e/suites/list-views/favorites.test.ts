@@ -116,6 +116,7 @@ describe('Favorites', () => {
 
     it('Location column redirect - item in user Home', () => {
         dataTable.clickItemLocation(folderName)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe('Personal Files');
@@ -124,6 +125,7 @@ describe('Favorites', () => {
 
     it('Location column redirect - file in folder', () => {
         dataTable.clickItemLocation(fileName2)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe(folderName);
@@ -136,6 +138,7 @@ describe('Favorites', () => {
 
     it('Location column redirect - file in site', () => {
         dataTable.clickItemLocation(fileName1)
+            .then(() => dataTable.waitForHeader())
             .then(() => breadcrumb.getCurrentItemName())
             .then(name => {
                 expect(name).toBe(siteName);
