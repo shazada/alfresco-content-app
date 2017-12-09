@@ -33,6 +33,7 @@ export abstract class Page {
     public layout: ElementFinder = element(this.locators.layout);
     public overlay: ElementFinder = element(this.locators.overlay);
     public snackBar: ElementFinder = element(this.locators.snackBar);
+    public snackBarAction: ElementFinder = element(this.locators.snackBarAction);
 
     constructor(public url: string = '') {}
 
@@ -60,12 +61,13 @@ export abstract class Page {
     }
 
     getSnackBarMessage(): promise.Promise<string> {
-        return this.isSnackBarDisplayed()
-            .then(() => this.snackBar.getText())
-            .catch(() => '');
+        // return this.isSnackBarDisplayed()
+            // .then(() => this.snackBar.getText());
+            // .catch(() => '');
+        return this.snackBar.getText();
     }
 
     getSnackBarAction(): ElementFinder {
-        return this.snackBar.element(this.locators.snackBarAction);
+        return this.snackBarAction;
     }
 }
