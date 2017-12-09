@@ -159,7 +159,6 @@ describe('Trash', () => {
 
         it('Location column redirect - file in user Home', () => {
             dataTable.clickItemLocation(fileUser)
-                .then(() => dataTable.waitForHeader())
                 .then(() => breadcrumb.getCurrentItemName())
                 .then(name => {
                     expect(name).toBe('Personal Files');
@@ -168,7 +167,6 @@ describe('Trash', () => {
 
         it('Location column redirect - file in site', () => {
             dataTable.clickItemLocation(fileSite)
-                .then(() => dataTable.waitForHeader())
                 .then(() => breadcrumb.getCurrentItemName())
                 .then(name => {
                     expect(name).toBe(siteName);

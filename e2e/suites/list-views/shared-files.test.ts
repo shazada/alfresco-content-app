@@ -64,7 +64,7 @@ describe('Shared Files', () => {
             .then(() => dataTable.isEmptyList())
             .then(empty => {
                 if (empty) {
-                    browser.sleep(5000);
+                    browser.sleep(7000);
                     sharedFilesPage.refresh();
                 }
             })
