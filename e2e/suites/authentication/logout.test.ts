@@ -22,7 +22,7 @@ import { LoginPage, LogoutPage, BrowsingPage } from '../../pages/pages';
 import { Utils } from '../../utilities/utils';
 import { RepoClient } from '../../utilities/repo-client/repo-client';
 
-fdescribe('Logout', () => {
+describe('Logout', () => {
     const page = new BrowsingPage();
     const loginPage = new LoginPage();
     const logoutPage = new LogoutPage();
