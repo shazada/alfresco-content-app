@@ -30,7 +30,7 @@ import { LoginPage, LogoutPage, BrowsingPage } from '../../pages/pages';
 import { Utils } from '../../utilities/utils';
 import { RepoClient } from '../../utilities/repo-client/repo-client';
 
-describe('Login', () => {
+fdescribe('Login', () => {
     const peopleApi = new RepoClient().people;
     const loginPage = new LoginPage();
     const logoutPage = new LogoutPage();

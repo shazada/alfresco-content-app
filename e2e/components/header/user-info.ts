@@ -30,8 +30,7 @@ import { Component } from '../component';
 export class UserInfo extends Component {
     private locators = {
         avatar: by.css('.current-user__avatar'),
-        fullName: by.css('.current-user__full-name'),
-        menuItems: by.css('[mat-menu-item]')
+        fullName: by.css('.current-user__full-name')
     };
 
     fullName: ElementFinder = this.component.element(this.locators.fullName);

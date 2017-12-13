@@ -30,7 +30,7 @@ import { LoginPage, LogoutPage, BrowsingPage } from '../../pages/pages';
 import { Utils } from '../../utilities/utils';
 import { RepoClient } from '../../utilities/repo-client/repo-client';
 
-describe('Logout', () => {
+fdescribe('Logout', () => {
     const page = new BrowsingPage();
     const loginPage = new LoginPage();
     const logoutPage = new LogoutPage();
@@ -40,8 +40,7 @@ describe('Logout', () => {
     const johnDoe = `user-${Utils.random()}`;
 
     beforeAll((done) => {
-        peopleApi
-            .createUser(johnDoe)
+        peopleApi.createUser(johnDoe)
             .then(done);
     });
 
@@ -52,9 +51,7 @@ describe('Logout', () => {
     });
 
     afterEach((done) => {
-        logoutPage.load()
-            .then(() => Utils.clearLocalStorage())
-            .then(done);
+        logoutPage.load().then(done);
     });
 
     it('redirects to Login page, on sign out', () => {
