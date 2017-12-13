@@ -23,7 +23,7 @@
  * along with Alfresco. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { ElementFinder, ElementArrayFinder, element, by, promise } from 'protractor';
+import { ElementFinder, ElementArrayFinder, element, by, promise, browser } from 'protractor';
 import { Menu } from '../menu/menu';
 import { Component } from '../component';
 
@@ -48,7 +48,8 @@ export class UserInfo extends Component {
 
     signOut(): promise.Promise<void> {
         return this.avatar.click()
-            .then(() => this.menu.wait())
+            // .then(() => this.menu.wait())
+            .then(() => browser.sleep(3000))
             .then(() => this.menu.clickMenuItem('Sign out'));
     }
 }
