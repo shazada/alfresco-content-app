@@ -41,7 +41,7 @@ export class Menu extends Component {
 
     wait() {
         // return browser.wait(EC.visibilityOf(this.items.first()), BROWSER_WAIT_TIMEOUT);
-        return browser.wait(EC.presenceOf(this.items.first()), BROWSER_WAIT_TIMEOUT);
+        return browser.wait(EC.visibilityOf(this.items.first().$('div')), BROWSER_WAIT_TIMEOUT);
     }
 
     getNthItem(nth: number): ElementFinder {
