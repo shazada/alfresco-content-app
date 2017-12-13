@@ -41,7 +41,7 @@ export class Menu extends Component {
 
     wait() {
         // return browser.wait(EC.visibilityOf(this.items.first()), BROWSER_WAIT_TIMEOUT);
-        return browser.wait(EC.visibilityOf(this.items.first()), BROWSER_WAIT_TIMEOUT);
+        return browser.wait(EC.presenceOf(this.items.first()), BROWSER_WAIT_TIMEOUT);
     }
 
     getNthItem(nth: number): ElementFinder {
@@ -65,7 +65,7 @@ export class Menu extends Component {
     }
 
     clickMenuItem(label: string): promise.Promise<void> {
-        return this.getItemByLabel(label).$('div').click();
+        return this.getItemByLabel(label).click();
     }
 
     isMenuItemPresent(title: string): promise.Promise<boolean> {
