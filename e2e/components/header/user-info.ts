@@ -43,22 +43,13 @@ export class UserInfo extends Component {
         super('app-current-user', ancestor);
     }
 
-    openMenu(): promise.Promise<Menu> {
-        const { menu, avatar } = this;
-
-        return avatar.click()
-            .then(() => menu.wait())
-            .then(() => menu);
-    }
-
     get name(): promise.Promise<string> {
         return this.fullName.getText();
     }
 
     signOut(): promise.Promise<void> {
-        return this.openMenu()
-            .then(menu => {
-                menu.clickMenuItem('Sign out');
-            });
+        return this.avatar.click()
+            .then(() => this.menu.wait())
+            .then(() => this.menu.clickMenuItem('Sign out'));
     }
 }
