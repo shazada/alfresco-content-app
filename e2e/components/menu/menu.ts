@@ -30,7 +30,7 @@ import { Component } from '../component';
 export class Menu extends Component {
     private static selectors = {
         root: '.mat-menu-panel',
-        item: 'button.mat-menu-item'
+        item: '.mat-menu-item'
     };
 
     items: ElementArrayFinder = this.component.all(by.css(Menu.selectors.item));
@@ -40,7 +40,7 @@ export class Menu extends Component {
     }
 
     wait() {
-        return browser.wait(EC.visibilityOf(this.items.first()), BROWSER_WAIT_TIMEOUT);
+        return browser.wait(EC.visibilityOf(this.component.element(by.css('.mat-menu-content'))), BROWSER_WAIT_TIMEOUT);
     }
 
     getNthItem(nth: number): ElementFinder {
