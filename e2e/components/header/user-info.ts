@@ -48,8 +48,8 @@ export class UserInfo extends Component {
 
     signOut(): promise.Promise<void> {
         return this.avatar.click()
-            // .then(() => this.menu.wait())
-            .then(() => browser.sleep(3000))
+            .then(() => this.menu.wait())
+            // .then(() => browser.sleep(3000))
             .then(() => this.menu.clickMenuItem('Sign out'));
     }
 }
