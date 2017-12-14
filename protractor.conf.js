@@ -59,8 +59,7 @@ exports.config = {
             project: 'e2e/tsconfig.e2e.json'
         });
 
-        // browser.manage().window().setSize(width, height);
-        browser.manage().window().maximize();
+        browser.manage().window().setSize(width, height);
 
         jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
 

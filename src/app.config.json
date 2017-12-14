@@ -5,7 +5,7 @@
         "logo": "/assets/images/alfresco-logo-white.svg"
     },
     "headerColor": "#2196F3",
-    "languagePicker": true,
+    "languagePicker": false,
     "document-list": {
         "supportedPageSizes": [
             25,
