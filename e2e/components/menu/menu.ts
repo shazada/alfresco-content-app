@@ -60,11 +60,11 @@ export class Menu extends Component {
     }
 
     clickNthItem(nth: number): promise.Promise<void> {
-        return this.getNthItem(nth).click();
+        return browser.actions().click(this.getNthItem(nth)).perform();
     }
 
     clickMenuItem(label: string): promise.Promise<void> {
-        return this.getItemByLabel(label).click();
+        return browser.actions().click(this.getItemByLabel(label)).perform();
     }
 
     isMenuItemPresent(title: string): promise.Promise<boolean> {
