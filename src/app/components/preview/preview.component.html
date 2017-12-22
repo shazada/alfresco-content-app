@@ -1,3 +1,9 @@
 <ng-container *ngIf="nodeId">
-    <adf-viewer [fileNodeId]="nodeId"></adf-viewer>
+    <adf-viewer [fileNodeId]="nodeId">
+        <adf-viewer-extension [supportedExtensions]="['txt', 'xml', 'ts', 'java', 'js', 'html', 'ftl']">
+            <ng-template let-url="urlFileContent" let-ext="extension">
+                <app-code-preview [url]="url" [extension]="ext"></app-code-preview>
+            </ng-template>
+        </adf-viewer-extension>
+    </adf-viewer>
 </ng-container>

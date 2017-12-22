@@ -52,6 +52,9 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { AboutComponent } from './components/about/about.component';
 import { LocationLinkComponent } from './components/location-link/location-link.component';
 
+import { CodeViewerModule } from '@denysvuika/adf-code-viewer';
+import { CodePreviewComponent } from './components/preview/code-preview.component';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -61,7 +64,8 @@ import { LocationLinkComponent } from './components/location-link/location-link.
         }),
         AdfModule,
         CommonModule,
-        MaterialModule
+        MaterialModule,
+        CodeViewerModule
     ],
     declarations: [
         AppComponent,
@@ -80,7 +84,8 @@ import { LocationLinkComponent } from './components/location-link/location-link.
         TrashcanComponent,
         PreviewComponent,
         AboutComponent,
-        LocationLinkComponent
+        LocationLinkComponent,
+        CodePreviewComponent
     ],
     providers: [
         {
