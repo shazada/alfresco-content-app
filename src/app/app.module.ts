@@ -53,7 +53,7 @@ import { AboutComponent } from './components/about/about.component';
 import { LocationLinkComponent } from './components/location-link/location-link.component';
 
 import { CodeViewerModule } from '@denysvuika/adf-code-viewer';
-import { CodePreviewComponent } from './components/preview/code-preview.component';
+import { CodePreviewComponent } from './components/code-preview/code-preview.component';
 
 @NgModule({
     imports: [

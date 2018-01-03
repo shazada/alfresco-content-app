@@ -2,22 +2,9 @@ import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({
-    selector: 'app-code-preview',
-    template: `
-        <adf-code-viewer
-            [language]="language"
-            [readOnly]="true"
-            [value]="content">
-        </adf-code-viewer>
-    `,
-    styles: [`
-        .adf-code-viewer {
-            height: 100vh;
-        }
-        .adf-code-viewer > .monaco-editor {
-            height: 100vh;
-        }
-    `]
+  selector: 'app-code-preview',
+  templateUrl: './code-preview.component.html',
+  styleUrls: ['./code-preview.component.scss']
 })
 export class CodePreviewComponent implements OnInit {
 
@@ -31,7 +18,7 @@ export class CodePreviewComponent implements OnInit {
         'js': 'javascript',
         'ftl': 'html',
         'html': 'html'
-    }
+    };
 
     @Input()
     language = 'text';
