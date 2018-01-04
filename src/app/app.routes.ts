@@ -39,6 +39,7 @@ import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { PreviewComponent } from './components/preview/preview.component';
 import { GenericErrorComponent } from './components/generic-error/generic-error.component';
+import { CustomPageComponent } from './components/custom-page/custom-page.component';
 
 export const APP_ROUTES: Routes = [
     {
@@ -130,6 +131,13 @@ export const APP_ROUTES: Routes = [
                 component: AboutComponent,
                 data: {
                     i18nTitle: 'APP.BROWSE.ABOUT.TITLE'
+                }
+            },
+            {
+                path: 'custom',
+                component: CustomPageComponent,
+                data: {
+                    i18nTitle: 'Custom Page Demo'
                 }
             },
             {

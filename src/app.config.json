@@ -82,6 +82,15 @@
         ],
         "misc": [
             {
+                "icon": "favorite",
+                "label": "Custom page",
+                "title": "My custom page",
+                "disabled": false,
+                "route": {
+                    "url": "/custom"
+                }
+            },
+            {
                 "icon": "help_outline",
                 "label": "About",
                 "title": "Version information",

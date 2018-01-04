@@ -54,6 +54,7 @@ import { LocationLinkComponent } from './components/location-link/location-link.
 
 import { CodeViewerModule } from '@denysvuika/adf-code-viewer';
 import { CodePreviewComponent } from './components/code-preview/code-preview.component';
+import { CustomPageComponent } from './components/custom-page/custom-page.component';
 
 @NgModule({
     imports: [
@@ -85,7 +86,8 @@ import { CodePreviewComponent } from './components/code-preview/code-preview.com
         PreviewComponent,
         AboutComponent,
         LocationLinkComponent,
-        CodePreviewComponent
+        CodePreviewComponent,
+        CustomPageComponent
     ],
     providers: [
         {
