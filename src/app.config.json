@@ -5,7 +5,7 @@
         "logo": "/assets/images/alfresco-logo-white.svg"
     },
     "headerColor": "#2196F3",
-    "languagePicker": false,
+    "languagePicker": true,
     "document-list": {
         "supportedPageSizes": [
             25,
@@ -77,6 +77,17 @@
                 "disabled": false,
                 "route": {
                     "url": "/trashcan"
+                }
+            }
+        ],
+        "misc": [
+            {
+                "icon": "help_outline",
+                "label": "About",
+                "title": "Version information",
+                "disabled": false,
+                "route": {
+                    "url": "/about"
                 }
             }
         ]
